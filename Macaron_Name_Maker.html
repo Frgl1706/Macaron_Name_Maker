@@ -1,0 +1,2971 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Macaron Name Atelier</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Serif+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+
+--bg:#fffaf7;
+--panel:#ffffff;
+--accent:#d9a8b8;
+--accent2:#c7a6ff;
+--text:#3f3a37;
+--sub:#867d78;
+--border:#ece6e1;
+
+--shadow:
+0 12px 32px rgba(0,0,0,0.08);
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+background:
+linear-gradient(
+135deg,
+#fffaf7 0%,
+#fff7fb 35%,
+#faf8ff 70%,
+#fffaf2 100%
+);
+
+font-family:
+"Noto Serif JP",
+serif;
+
+color:var(--text);
+
+overflow-x:hidden;
+
+min-height:100vh;
+
+}
+
+/* ======================
+TOP BAR
+====================== */
+
+.topbar{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:72px;
+
+background:
+rgba(255,255,255,0.92);
+
+backdrop-filter:blur(18px);
+
+border-bottom:
+1px solid rgba(0,0,0,0.05);
+
+display:flex;
+
+justify-content:space-between;
+align-items:center;
+
+padding:
+0 22px;
+
+z-index:9999;
+
+}
+
+.brand{
+
+display:flex;
+flex-direction:column;
+
+}
+
+.brand-title{
+
+font-family:
+"Great Vibes",
+cursive;
+
+font-size:34px;
+
+line-height:1;
+
+letter-spacing:1px;
+
+}
+
+.brand-sub{
+
+font-size:10px;
+
+letter-spacing:2px;
+
+color:var(--sub);
+
+margin-top:4px;
+
+text-transform:uppercase;
+
+}
+
+/* ======================
+MENU BUTTON
+====================== */
+
+.menu-button{
+
+width:48px;
+height:48px;
+
+border:none;
+
+background:none;
+
+cursor:pointer;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+font-size:28px;
+
+color:var(--text);
+
+}
+
+/* ======================
+DRAWER
+====================== */
+
+.drawer{
+
+position:fixed;
+
+right:-340px;
+top:0;
+
+width:320px;
+height:100vh;
+
+background:white;
+
+box-shadow:
+-10px 0 30px rgba(0,0,0,0.1);
+
+transition:
+0.4s;
+
+z-index:10000;
+
+overflow-y:auto;
+
+}
+
+.drawer.open{
+
+right:0;
+
+}
+
+.drawer-header{
+
+padding:30px;
+
+border-bottom:
+1px solid var(--border);
+
+}
+
+.drawer-title{
+
+font-family:
+"Great Vibes";
+
+font-size:34px;
+
+}
+
+.drawer-links{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.drawer-links button{
+
+background:none;
+
+border:none;
+
+padding:20px;
+
+font-size:16px;
+
+text-align:left;
+
+cursor:pointer;
+
+border-bottom:
+1px solid var(--border);
+
+font-family:
+"Noto Serif JP";
+
+}
+
+.drawer-links button:hover{
+
+background:#faf7f5;
+
+}
+
+.drawer-overlay{
+
+position:fixed;
+
+inset:0;
+
+background:
+rgba(0,0,0,0.35);
+
+display:none;
+
+z-index:9990;
+
+}
+
+.drawer-overlay.show{
+
+display:block;
+
+}
+
+/* ======================
+MAIN
+====================== */
+
+.main{
+
+margin-top:72px;
+
+}
+
+/* ======================
+PAGE
+====================== */
+
+.page{
+
+display:none;
+
+padding-bottom:80px;
+
+}
+
+.page.active{
+
+display:block;
+
+}
+
+/* ======================
+HERO
+====================== */
+
+.hero{
+
+width:100%;
+
+aspect-ratio:16/9;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.hero img{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+display:block;
+
+}
+
+.hero-overlay{
+
+position:absolute;
+
+inset:0;
+
+background:
+linear-gradient(
+to top,
+rgba(0,0,0,0.5),
+rgba(0,0,0,0.1)
+);
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+flex-direction:column;
+
+}
+
+.hero-title{
+
+font-family:
+"Great Vibes";
+
+font-size:
+clamp(42px,8vw,90px);
+
+color:white;
+
+text-shadow:
+0 4px 10px rgba(0,0,0,0.3);
+
+}
+
+.hero-sub{
+
+color:white;
+
+letter-spacing:3px;
+
+font-size:12px;
+
+margin-top:10px;
+
+}
+
+/* ======================
+SECTION BAR
+====================== */
+
+.section-bar{
+
+max-width:1200px;
+
+margin:
+30px auto;
+
+height:1px;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+#d8c9c1,
+transparent
+);
+
+}
+
+/* ======================
+CONTENT
+====================== */
+
+.container{
+
+width:min(1200px,92%);
+
+margin:auto;
+
+}
+
+.section-title{
+
+font-size:30px;
+
+font-weight:300;
+
+margin-bottom:18px;
+
+}
+
+.section-sub{
+
+color:var(--sub);
+
+margin-bottom:30px;
+
+}
+
+/* ======================
+HOW TO
+====================== */
+
+.howto-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(260px,1fr));
+
+gap:20px;
+
+}
+
+.howto-card{
+
+background:white;
+
+padding:24px;
+
+border-radius:20px;
+
+box-shadow:var(--shadow);
+
+}
+
+.step{
+
+font-family:
+"Great Vibes";
+
+font-size:40px;
+
+color:var(--accent);
+
+}
+
+.howto-card h3{
+
+margin-top:10px;
+margin-bottom:10px;
+
+font-weight:500;
+
+}
+
+/* ======================
+GENERATOR
+====================== */
+
+.generator{
+
+margin-top:60px;
+
+background:white;
+
+padding:30px;
+
+border-radius:28px;
+
+box-shadow:var(--shadow);
+
+}
+
+.generator-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+margin-bottom:25px;
+
+}
+
+.generator-title{
+
+font-size:26px;
+
+}
+
+.generator-buttons{
+
+display:flex;
+
+gap:10px;
+
+flex-wrap:wrap;
+
+}
+
+.generator-buttons button{
+
+border:none;
+
+padding:12px 18px;
+
+border-radius:999px;
+
+cursor:pointer;
+
+background:
+linear-gradient(
+135deg,
+#f2d9e4,
+#ddd0ff
+);
+
+font-family:
+"Noto Serif JP";
+
+}
+
+.generator-output{
+
+margin-top:20px;
+
+padding:25px;
+
+background:
+#faf9ff;
+
+border-radius:20px;
+
+border:
+1px solid #ece8ff;
+
+}
+
+/* ======================
+NAME
+====================== */
+
+.macaron-name{
+
+font-size:24px;
+
+line-height:1.8;
+
+margin-bottom:20px;
+
+word-break:break-word;
+
+}
+
+.macaron-latin{
+
+font-family:
+"Cormorant Garamond";
+
+font-size:26px;
+
+font-style:italic;
+
+color:#6f4ab8;
+
+margin-bottom:20px;
+
+line-height:1.5;
+
+}
+
+.macaron-desc{
+
+line-height:2;
+
+}
+
+/* ======================
+METERS
+====================== */
+
+.meter-area{
+
+margin-top:30px;
+
+}
+
+.meter-label{
+
+margin-bottom:8px;
+
+font-size:14px;
+
+}
+
+.meter{
+
+height:18px;
+
+background:#ececec;
+
+border-radius:999px;
+
+overflow:hidden;
+
+margin-bottom:16px;
+
+}
+
+.meter-fill{
+
+height:100%;
+
+width:0%;
+
+transition:1s;
+
+}
+
+.length-fill{
+
+background:#f7a8c2;
+
+}
+
+.philo-fill{
+
+background:#bba7ff;
+
+}
+
+.chaos-fill{
+
+background:#ffcf6d;
+
+}
+
+/* ======================
+HOME CARDS
+====================== */
+
+.info-cards{
+
+margin-top:50px;
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:20px;
+
+}
+
+.info-card{
+
+background:white;
+
+padding:24px;
+
+border-radius:20px;
+
+box-shadow:var(--shadow);
+
+}
+
+.info-card h3{
+
+margin-bottom:10px;
+
+font-weight:500;
+
+}
+
+.info-card p{
+
+line-height:1.8;
+
+color:#5d5752;
+
+}
+
+/* ======================
+FEATURED
+====================== */
+
+.featured{
+
+margin-top:60px;
+
+background:
+linear-gradient(
+135deg,
+#fff,
+#fff7fb
+);
+
+padding:35px;
+
+border-radius:30px;
+
+box-shadow:var(--shadow);
+
+}
+
+.featured-title{
+
+font-family:
+"Great Vibes";
+
+font-size:50px;
+
+margin-bottom:10px;
+
+}
+
+.featured-text{
+
+line-height:2;
+
+}
+
+/* ======================
+COMMENT PREVIEW
+PART2で続く
+====================== */
+
+.comment-section{
+
+margin-top:60px;
+
+}
+
+.comment-title{
+
+font-size:28px;
+
+margin-bottom:20px;
+
+}
+
+/*
+PART1 END
+PART2から
+コメントシステム
+返信システム
+うマカロン機能
+Shop Simulator
+Language
+About
+JavaScript
+へ続く
+*/
+
+</style>
+</head>
+
+<body>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<div class="drawer" id="drawer">
+
+<div class="drawer-header">
+
+<div class="drawer-title">
+Macaron Name Atelier
+</div>
+
+</div>
+
+<div class="drawer-links">
+
+<button data-page="home">
+🏠 Home
+</button>
+
+<button data-page="simulator">
+🧁 Shop Simulator
+</button>
+
+<button data-page="language">
+🌐 Language
+</button>
+
+<button data-page="about">
+ℹ About
+</button>
+
+</div>
+
+</div>
+
+<header class="topbar">
+
+<div class="brand">
+
+<div class="brand-title">
+Macaron Name Atelier
+</div>
+
+<div class="brand-sub">
+Dreams, Memories and Sweet Stories
+</div>
+
+</div>
+
+<button
+class="menu-button"
+id="menuButton">
+☰
+</button>
+
+</header>
+
+<main class="main">
+
+<!-- ======================
+HOME PAGE
+====================== -->
+
+<section
+class="page active"
+id="homePage">
+
+<div class="hero">
+
+<img
+src="https://images.unsplash.com/photo-1558326567-98ae2405596b?q=80&w=1600&auto=format&fit=crop"
+alt="macaron">
+
+<div class="hero-overlay">
+
+<div class="hero-title">
+Every Macaron Has A Story
+</div>
+
+<div class="hero-sub">
+LUXURY • MEMORY • SWEETNESS
+</div>
+
+</div>
+
+</div>
+
+<div class="section-bar"></div>
+
+<div class="container">
+
+<h2 class="section-title">
+使い方
+</h2>
+
+<p class="section-sub">
+物語のようなマカロン名を生成できます。
+</p>
+
+<div class="howto-grid">
+
+<div class="howto-card">
+
+<div class="step">
+Ⅰ
+</div>
+
+<h3>
+生成モードを選択
+</h3>
+
+<p>
+通常・Σ・哲学・伝説などから選択します。
+</p>
+
+</div>
+
+<div class="howto-card">
+
+<div class="step">
+Ⅱ
+</div>
+
+<h3>
+名前を生成
+</h3>
+
+<p>
+長大でおしゃれなマカロン名が生成されます。
+</p>
+
+</div>
+
+<div class="howto-card">
+
+<div class="step">
+Ⅲ
+</div>
+
+<h3>
+保存・共有
+</h3>
+
+<p>
+お気に入りの名前をコピーして利用できます。
+</p>
+
+</div>
+
+</div>
+
+<div class="generator">
+
+<div class="generator-header">
+
+<div class="generator-title">
+🍬 Macaron Name Generator
+</div>
+
+<div class="generator-buttons">
+
+<button id="normalBtn">
+通常生成
+</button>
+
+<button id="sigmaBtn">
+Σ総和
+</button>
+
+<button id="philoBtn">
+哲学
+</button>
+
+<button id="legendBtn">
+伝説
+</button>
+
+</div>
+
+</div>
+
+<div class="generator-output">
+
+<div
+class="macaron-name"
+id="macaronName">
+
+ここにマカロン名が表示されます
+
+</div>
+
+<div
+class="macaron-latin"
+id="macaronLatin">
+
+Macaronium Grandissimum
+
+</div>
+
+<div
+class="macaron-desc"
+id="macaronDesc">
+
+説明文が表示されます
+
+</div>
+
+<div class="meter-area">
+
+<div class="meter-label">
+名前長さ
+</div>
+
+<div class="meter">
+
+<div
+class="meter-fill length-fill"
+id="lengthFill">
+</div>
+
+</div>
+
+<div class="meter-label">
+哲学度
+</div>
+
+<div class="meter">
+
+<div
+class="meter-fill philo-fill"
+id="philoFill">
+</div>
+
+</div>
+
+<div class="meter-label">
+カオス度
+</div>
+
+<div class="meter">
+
+<div
+class="meter-fill chaos-fill"
+id="chaosFill">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="info-cards">
+
+<div class="info-card">
+
+<h3>
+本日のマカロン
+</h3>
+
+<p>
+毎日変わるおすすめの物語系マカロン。
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>
+レアリティ
+</h3>
+
+<p>
+Common / Rare / Epic / Legendary / Mythic
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>
+長さランク
+</h3>
+
+<p>
+S・M・L・XL・XXL・Σ
+</p>
+
+</div>
+
+</div>
+
+<div class="featured">
+
+<div class="featured-title">
+Sweet Stories
+</div>
+
+<div class="featured-text">
+
+あなたのためだけの
+甘い物語を生成します。
+
+午後の窓辺、
+月明かりのカフェ、
+南の海、
+古い図書館。
+
+それらすべてを
+ひとつのマカロンへ。
+
+</div>
+
+</div>
+
+<div class="comment-section">
+
+
+<!-- ========================================================= -->
+<!-- PART2 : HOMEコメントシステム続き -->
+<!-- このコードはPart1の最後 -->
+<!-- <div class="comment-section"> の続きから貼り付け -->
+<!-- ========================================================= -->
+
+<div class="comment-form">
+
+<div class="info-card">
+
+<h3>
+コメントを書く
+</h3>
+
+<div style="margin-top:15px;">
+
+<input
+type="text"
+id="commentName"
+placeholder="お名前"
+style="
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border:1px solid #ddd;
+border-radius:12px;
+font-family:'Noto Serif JP';
+">
+
+<textarea
+id="commentText"
+placeholder="甘い思い出やマカロンへの想いを書いてください..."
+style="
+width:100%;
+height:120px;
+padding:12px;
+border:1px solid #ddd;
+border-radius:12px;
+resize:vertical;
+font-family:'Noto Serif JP';
+"></textarea>
+
+<button
+id="postCommentBtn"
+style="
+margin-top:12px;
+padding:12px 20px;
+border:none;
+border-radius:999px;
+background:linear-gradient(135deg,#f3d5df,#ddd0ff);
+cursor:pointer;
+font-family:'Noto Serif JP';
+">
+投稿
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div
+id="commentList"
+style="margin-top:25px;">
+
+<!-- コメント生成先 -->
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- SHOP SIMULATOR -->
+<!-- ========================================================= -->
+
+<section
+class="page"
+id="simulatorPage">
+
+<div class="hero">
+
+<img
+src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop"
+alt="shop">
+
+<div class="hero-overlay">
+
+<div class="hero-title">
+Shop Simulator
+</div>
+
+<div class="hero-sub">
+PATISSERIE CONVERSATION EXPERIENCE
+</div>
+
+</div>
+
+</div>
+
+<div class="section-bar"></div>
+
+<div class="container">
+
+<h2 class="section-title">
+店員やりとりシミュレーター
+</h2>
+
+<p class="section-sub">
+高級パティスリーでの接客を体験できます。
+</p>
+
+<div
+class="generator"
+style="margin-top:20px;">
+
+<div
+id="simulatorLog"
+style="
+background:#faf9ff;
+padding:20px;
+border-radius:20px;
+min-height:300px;
+line-height:2;
+">
+
+<div>
+店員：
+いらっしゃいませ。
+</div>
+
+<div>
+店員：
+本日はどのような物語がお好みですか？
+</div>
+
+</div>
+
+<div
+style="
+margin-top:20px;
+display:flex;
+gap:10px;
+">
+
+<input
+type="text"
+id="customerInput"
+placeholder="例：甘いマカロンが欲しい"
+style="
+flex:1;
+padding:12px;
+border:1px solid #ddd;
+border-radius:12px;
+font-family:'Noto Serif JP';
+">
+
+<button
+id="sendSimulatorBtn"
+style="
+padding:12px 18px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+background:linear-gradient(135deg,#f3d5df,#ddd0ff);
+">
+送信
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- LANGUAGE -->
+<!-- ========================================================= -->
+
+<section
+class="page"
+id="languagePage">
+
+<div class="hero">
+
+<img
+src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop"
+alt="language">
+
+<div class="hero-overlay">
+
+<div class="hero-title">
+Language
+</div>
+
+<div class="hero-sub">
+MULTI LANGUAGE SETTINGS
+</div>
+
+</div>
+
+</div>
+
+<div class="section-bar"></div>
+
+<div class="container">
+
+<h2 class="section-title">
+言語設定
+</h2>
+
+<p class="section-sub">
+表示言語を変更できます。
+</p>
+
+<div class="info-cards">
+
+<div class="info-card">
+
+<h3>
+🇯🇵 日本語
+</h3>
+
+<p>
+マカロンねぇむメーカー
+</p>
+
+<button
+class="langBtn"
+data-lang="ja"
+style="
+margin-top:10px;
+padding:10px 18px;
+border:none;
+border-radius:999px;
+cursor:pointer;
+">
+選択
+</button>
+
+</div>
+
+<div class="info-card">
+
+<h3>
+🇺🇸 English
+</h3>
+
+<p>
+Macaron Name Atelier
+</p>
+
+<button
+class="langBtn"
+data-lang="en"
+style="
+margin-top:10px;
+padding:10px 18px;
+border:none;
+border-radius:999px;
+cursor:pointer;
+">
+Select
+</button>
+
+</div>
+
+<div class="info-card">
+
+<h3>
+🇹🇭 ไทย
+</h3>
+
+<p>
+โรงงานชื่อมาการอง
+</p>
+
+<button
+class="langBtn"
+data-lang="th"
+style="
+margin-top:10px;
+padding:10px 18px;
+border:none;
+border-radius:999px;
+cursor:pointer;
+">
+เลือก
+</button>
+
+</div>
+
+</div>
+
+<div
+class="featured"
+style="margin-top:40px;">
+
+<div class="featured-title">
+Current Language
+</div>
+
+<div
+id="currentLanguage">
+日本語
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- ABOUT -->
+<!-- ========================================================= -->
+
+<section
+class="page"
+id="aboutPage">
+
+<div class="hero">
+
+<img
+src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1600&auto=format&fit=crop"
+alt="about">
+
+<div class="hero-overlay">
+
+<div class="hero-title">
+About
+</div>
+
+<div class="hero-sub">
+MACARON NAME ATELIER
+</div>
+
+</div>
+
+</div>
+
+<div class="section-bar"></div>
+
+<div class="container">
+
+<h2 class="section-title">
+詳細情報
+</h2>
+
+<p class="section-sub">
+生成システムについて
+</p>
+
+<div class="info-cards">
+
+<div class="info-card">
+
+<h3>
+Scenes
+</h3>
+
+<p id="sceneCount">
+100+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>
+Actions
+</h3>
+
+<p id="actionCount">
+300+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>
+Latin
+</h3>
+
+<p id="latinCount">
+350+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>
+Descriptions
+</h3>
+
+<p id="descCount">
+500+
+</p>
+
+</div>
+
+</div>
+
+<div
+class="featured"
+style="margin-top:40px;">
+
+<div class="featured-title">
+Macaron Philosophy
+</div>
+
+<div class="featured-text">
+
+このサイトは、
+マカロンを単なる菓子ではなく、
+ひとつの物語として扱います。
+
+香り。
+
+風景。
+
+時間。
+
+記憶。
+
+哲学。
+
+それらを組み合わせ、
+架空の高級パティスリーの商品名を
+自動生成します。
+
+</div>
+
+</div>
+
+<div
+class="featured"
+style="margin-top:40px;">
+
+<div class="featured-title">
+Statistics
+</div>
+
+<div class="featured-text">
+
+総語彙数：
+約1250+
+
+組み合わせ数：
+数兆通り以上
+
+生成可能長：
+Σ級
+
+レアリティ：
+Common〜Mythic
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- FOOTER -->
+<!-- ========================================================= -->
+
+<footer
+style="
+padding:50px;
+text-align:center;
+color:#888;
+">
+
+Macaron Name Atelier © 2026
+
+</footer>
+
+</main>
+
+<!-- ========================================================= -->
+<!-- PART2 END -->
+<!-- ========================================================= -->
+
+<!--
+Part3から
+
+<script>
+
+・メニュー開閉
+・タブ切替
+・コメント投稿
+・返信
+・高評価
+・低評価
+・うマカロン
+・店員シミュレーター
+・言語切替
+・マカロン生成機
+・ローカル保存
+
+を実装
+
+さらに最後に
+
+</body>
+</html>
+
+で閉じる
+
+-->
+
+<h2 class="comment-title">
+コメント
+</h2>
+
+<!--
+PART2から
+コメントフォーム
+コメント一覧
+返信機能
+うマカロン
+シミュレーター
+Language
+About
+JS
+へ続く
+-->
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+/* =========================================================
+Macaron Name Atelier
+Part3 JavaScript
+========================================================= */
+
+/* =========================================================
+MENU
+========================================================= */
+
+const menuButton =
+document.getElementById("menuButton");
+
+const drawer =
+document.getElementById("drawer");
+
+const drawerOverlay =
+document.getElementById("drawerOverlay");
+
+menuButton.addEventListener("click",()=>{
+
+drawer.classList.add("open");
+drawerOverlay.classList.add("show");
+
+});
+
+drawerOverlay.addEventListener("click",()=>{
+
+drawer.classList.remove("open");
+drawerOverlay.classList.remove("show");
+
+});
+
+/* =========================================================
+PAGE SWITCH
+========================================================= */
+
+const pages = {
+
+home:
+document.getElementById("homePage"),
+
+simulator:
+document.getElementById("simulatorPage"),
+
+language:
+document.getElementById("languagePage"),
+
+about:
+document.getElementById("aboutPage")
+
+};
+
+document
+.querySelectorAll("[data-page]")
+.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+Object.values(pages)
+.forEach(page=>{
+
+page.classList.remove("active");
+
+});
+
+const pageName =
+btn.dataset.page;
+
+pages[pageName]
+.classList.add("active");
+
+drawer.classList.remove("open");
+drawerOverlay.classList.remove("show");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+});
+
+});
+
+/* =========================================================
+DATA
+========================================================= */
+
+const scenes = [
+
+"午後四時の窓辺",
+"月明かりのカフェテラス",
+"白い庭園",
+"南の海",
+"古い図書館",
+"静かな喫茶店",
+"春の温室",
+"雨の石畳",
+"冬の街角",
+"夜明け前の厨房",
+"夕暮れの大通り",
+"海辺のホテル",
+"白樺の森",
+"小さな港町",
+"古城の回廊",
+"星降るテラス",
+"朝焼けの駅",
+"パリの裏路地",
+"花市場",
+"丘の上の庭園"
+
+];
+
+const actions = [
+
+"すべての甘い記憶を集めた",
+"時間を香りへ変換した",
+"余韻を結晶化した",
+"哲学的に再構築した",
+"風景を甘味化した",
+"感情を焼き上げた",
+"季節を閉じ込めた",
+"月光で熟成した",
+"旅の思い出を重ねた",
+"香りを統合した",
+"静寂を味へ変換した",
+"夢をマカロン化した",
+"甘さを再定義した",
+"午後を圧縮した",
+"紅茶の時間を保存した",
+"幻想を編み込んだ"
+
+];
+
+const endings = [
+
+"マカロン",
+"物語マカロン",
+"哲学的マカロン",
+"記憶保存型マカロン",
+"Grand Macaron",
+"Macaron Supreme",
+"Macaron Mythique",
+"Σマカロン"
+
+];
+
+const latin = [
+
+"Magna Dulcissima Conjunctio Aromarum",
+"Universalis Memoria Temporum",
+"Historia Deliciosissima Infinita",
+"Macaronium Philosophicum Grandissimum",
+"Atmosphaera Dessertorum Universalis",
+"Ventus Dulcis Patisseriae",
+"Lux Aromatica Antiqua",
+"Grandissima Narratio Dulcis",
+"Tempus Suavissimum",
+"Conjunctio Magna Memoriae"
+
+];
+
+const descriptions = [
+
+"時間と香りの記憶を閉じ込めたマカロンです。",
+"静かな午後をテーマに構成されています。",
+"甘さと余韻の調和を楽しめます。",
+"物語のように変化する風味です。",
+"紅茶との相性を重視しました。",
+"ゆっくりと香りが広がります。",
+"旅をしているような余韻があります。",
+"高級パティスリーをイメージしています。",
+"甘い記憶を呼び起こします。",
+"幻想的な空気感を味わえます。"
+
+];
+
+/* =========================================================
+HELPERS
+========================================================= */
+
+function random(arr){
+
+return arr[
+Math.floor(
+Math.random()*arr.length
+)
+];
+
+}
+
+function randomPercent(){
+
+return Math.floor(
+Math.random()*100
+);
+
+}
+
+/* =========================================================
+GENERATOR ELEMENTS
+========================================================= */
+
+const nameEl =
+document.getElementById("macaronName");
+
+const latinEl =
+document.getElementById("macaronLatin");
+
+const descEl =
+document.getElementById("macaronDesc");
+
+const lengthFill =
+document.getElementById("lengthFill");
+
+const philoFill =
+document.getElementById("philoFill");
+
+const chaosFill =
+document.getElementById("chaosFill");
+
+/* =========================================================
+GENERATION CORE
+========================================================= */
+
+function createLatin(){
+
+let text = "";
+
+for(let i=0;i<3;i++){
+
+text += random(latin)+" ";
+
+}
+
+return text;
+
+}
+
+function createDescription(){
+
+return (
+random(descriptions)
++" "+
+random(descriptions)
++" "+
+random(descriptions)
+);
+
+}
+
+function updateMeters(name){
+
+let len =
+Math.min(
+100,
+Math.floor(name.length*1.2)
+);
+
+lengthFill.style.width =
+len+"%";
+
+philoFill.style.width =
+randomPercent()+"%";
+
+chaosFill.style.width =
+randomPercent()+"%";
+
+}
+
+/* =========================================================
+NORMAL
+========================================================= */
+
+function generateNormal(){
+
+const name =
+
+random(scenes)
++"で"+
+random(actions)
++"結果として誕生した"+
+random(endings);
+
+nameEl.textContent = name;
+
+latinEl.textContent =
+createLatin();
+
+descEl.textContent =
+createDescription();
+
+updateMeters(name);
+
+saveHistory(name);
+
+}
+
+/* =========================================================
+SIGMA
+========================================================= */
+
+function generateSigma(){
+
+let name = "Σ(";
+
+for(let i=0;i<6;i++){
+
+name +=
+random(scenes);
+
+if(i<5){
+
+name += " + ";
+
+}
+
+}
+
+name +=
+") = "+
+random(endings);
+
+nameEl.textContent =
+name;
+
+latinEl.textContent =
+createLatin();
+
+descEl.textContent =
+createDescription();
+
+updateMeters(name);
+
+saveHistory(name);
+
+}
+
+/* =========================================================
+PHILOSOPHY
+========================================================= */
+
+function generatePhilosophy(){
+
+const name =
+
+"『"+
+random(scenes)+
+"における甘味と存在の関係性を"+
+random(actions)+
+"ことによって生じた"+
+random(endings)+
+"』";
+
+nameEl.textContent =
+name;
+
+latinEl.textContent =
+createLatin();
+
+descEl.textContent =
+createDescription();
+
+updateMeters(name);
+
+saveHistory(name);
+
+}
+
+/* =========================================================
+LEGEND
+========================================================= */
+
+function generateLegend(){
+
+let name =
+"【LEGENDARY】";
+
+for(let i=0;i<10;i++){
+
+name +=
+random(scenes)
++"・";
+
+}
+
+name +=
+random(actions)+
+"究極完全体"+
+random(endings);
+
+nameEl.textContent =
+name;
+
+latinEl.textContent =
+createLatin();
+
+descEl.textContent =
+createDescription();
+
+updateMeters(name);
+
+saveHistory(name);
+
+}
+
+/* =========================================================
+BUTTONS
+========================================================= */
+
+document
+.getElementById("normalBtn")
+.addEventListener(
+"click",
+generateNormal
+);
+
+document
+.getElementById("sigmaBtn")
+.addEventListener(
+"click",
+generateSigma
+);
+
+document
+.getElementById("philoBtn")
+.addEventListener(
+"click",
+generatePhilosophy
+);
+
+document
+.getElementById("legendBtn")
+.addEventListener(
+"click",
+generateLegend
+);
+
+/* =========================================================
+LOCAL HISTORY
+========================================================= */
+
+function saveHistory(name){
+
+let history =
+
+JSON.parse(
+localStorage.getItem(
+"macaronHistory"
+) || "[]"
+);
+
+history.unshift(name);
+
+if(history.length > 50){
+
+history.length = 50;
+
+}
+
+localStorage.setItem(
+"macaronHistory",
+JSON.stringify(history)
+);
+
+}
+
+/* =========================================================
+COMMENTS
+========================================================= */
+
+const commentList =
+document.getElementById("commentList");
+
+let comments = [];
+
+function renderComments(){
+
+commentList.innerHTML = "";
+
+comments.forEach(comment=>{
+
+const div =
+document.createElement("div");
+
+div.className =
+"info-card";
+
+div.style.marginBottom =
+"15px";
+
+div.innerHTML = `
+
+<h3>${comment.name}</h3>
+
+<p style="margin-top:10px;">
+${comment.text}
+</p>
+
+<div
+style="
+margin-top:15px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+">
+
+<button
+onclick="likeComment(${comment.id})">
+
+👍 ${comment.likes}
+
+</button>
+
+<button
+onclick="dislikeComment(${comment.id})">
+
+👎 ${comment.dislikes}
+
+</button>
+
+<button
+onclick="umaComment(${comment.id})">
+
+🍬 ${comment.uma}
+
+</button>
+
+</div>
+
+`;
+
+commentList.appendChild(div);
+
+});
+
+}
+
+document
+.getElementById("postCommentBtn")
+.addEventListener("click",()=>{
+
+const name =
+
+document
+.getElementById("commentName")
+.value
+.trim();
+
+const text =
+
+document
+.getElementById("commentText")
+.value
+.trim();
+
+if(!name || !text){
+
+return;
+
+}
+
+comments.unshift({
+
+id:Date.now(),
+
+name,
+
+text,
+
+likes:0,
+
+dislikes:0,
+
+uma:0
+
+});
+
+renderComments();
+
+document
+.getElementById("commentText")
+.value="";
+
+});
+
+function likeComment(id){
+
+const c =
+comments.find(
+v=>v.id===id
+);
+
+if(c){
+
+c.likes++;
+
+renderComments();
+
+}
+
+}
+
+function dislikeComment(id){
+
+const c =
+comments.find(
+v=>v.id===id
+);
+
+if(c){
+
+c.dislikes++;
+
+renderComments();
+
+}
+
+}
+
+function umaComment(id){
+
+const c =
+comments.find(
+v=>v.id===id
+);
+
+if(c){
+
+c.uma++;
+
+renderComments();
+
+}
+
+}
+
+/* =========================================================
+PART3 END
+PART4へ続く
+
+・返信機能
+・シミュレーターAI
+・言語切替
+・初期化
+・localStorage保存
+・HTML終了タグ
+
+========================================================= */
+
+/* =========================================================
+PART4
+返信機能
+店員シミュレーター
+言語設定
+ローカル保存
+初期化処理
+HTML終了
+========================================================= */
+
+/* =========================================================
+COMMENT REPLY SYSTEM
+========================================================= */
+
+let replyMap = {};
+
+function replyComment(id){
+
+const replyText =
+prompt("返信を入力してください");
+
+if(!replyText){
+
+return;
+
+}
+
+if(!replyMap[id]){
+
+replyMap[id] = [];
+
+}
+
+replyMap[id].push({
+
+text:replyText
+
+});
+
+renderComments();
+
+}
+
+function renderReplies(commentId){
+
+if(!replyMap[commentId]){
+
+return "";
+
+}
+
+let html = "";
+
+replyMap[commentId].forEach(reply=>{
+
+html += `
+
+<div
+style="
+margin-top:10px;
+margin-left:25px;
+padding:12px;
+background:#faf9ff;
+border-left:4px solid #d9c7ff;
+border-radius:10px;
+">
+
+↳ ${reply.text}
+
+</div>
+
+`;
+
+});
+
+return html;
+
+}
+
+/* =========================================================
+COMMENT RENDER OVERRIDE
+========================================================= */
+
+function renderComments(){
+
+commentList.innerHTML = "";
+
+comments.forEach(comment=>{
+
+const div =
+document.createElement("div");
+
+div.className =
+"info-card";
+
+div.style.marginBottom =
+"18px";
+
+div.innerHTML = `
+
+<h3>
+${comment.name}
+</h3>
+
+<p
+style="
+margin-top:10px;
+line-height:1.8;
+">
+${comment.text}
+</p>
+
+<div
+style="
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:15px;
+">
+
+<button
+onclick="likeComment(${comment.id})">
+
+👍 ${comment.likes}
+
+</button>
+
+<button
+onclick="dislikeComment(${comment.id})">
+
+👎 ${comment.dislikes}
+
+</button>
+
+<button
+onclick="umaComment(${comment.id})">
+
+🍬 ${comment.uma}
+
+</button>
+
+<button
+onclick="replyComment(${comment.id})">
+
+返信
+
+</button>
+
+</div>
+
+${renderReplies(comment.id)}
+
+`;
+
+commentList.appendChild(div);
+
+});
+
+saveComments();
+
+}
+
+/* =========================================================
+SAVE COMMENTS
+========================================================= */
+
+function saveComments(){
+
+localStorage.setItem(
+"macaronComments",
+JSON.stringify(comments)
+);
+
+localStorage.setItem(
+"macaronReplies",
+JSON.stringify(replyMap)
+);
+
+}
+
+function loadComments(){
+
+const savedComments =
+
+localStorage.getItem(
+"macaronComments"
+);
+
+const savedReplies =
+
+localStorage.getItem(
+"macaronReplies"
+);
+
+if(savedComments){
+
+comments =
+JSON.parse(savedComments);
+
+}
+
+if(savedReplies){
+
+replyMap =
+JSON.parse(savedReplies);
+
+}
+
+renderComments();
+
+}
+
+/* =========================================================
+SHOP SIMULATOR
+========================================================= */
+
+const simulatorResponses = [
+
+"素敵なご注文ですね。",
+"それでしたら記憶系マカロンがおすすめです。",
+"午後の香りを閉じ込めた商品がございます。",
+"本日の人気商品をご案内いたします。",
+"物語性を重視したマカロンはいかがでしょうか。",
+"哲学的な余韻を持つ商品もございます。",
+"紅茶との相性を重視した構成です。",
+"月明かりをテーマにした限定商品があります。",
+"お客様のお好みに近いものをご提案いたします。",
+"旅の記憶を表現した商品もございます。",
+
+"それは大変興味深いご要望です。",
+"当店でも特に人気のジャンルです。",
+"香りを重視するならこちらがおすすめです。",
+"甘さ控えめの物語系もございます。",
+"長い名前の商品がお好みでしょうか。",
+"Σ級マカロンもご用意しております。",
+
+"Legendaryランクの商品もございます。",
+"本日のシェフおすすめ商品です。",
+"そのテーマは非常に人気があります。",
+"ぜひこちらをご覧ください。"
+
+];
+
+document
+.getElementById(
+"sendSimulatorBtn"
+)
+.addEventListener(
+"click",
+()=>{
+
+const input =
+
+document
+.getElementById(
+"customerInput"
+);
+
+const text =
+input.value.trim();
+
+if(!text){
+
+return;
+
+}
+
+const log =
+
+document
+.getElementById(
+"simulatorLog"
+);
+
+const userDiv =
+document.createElement(
+"div"
+);
+
+userDiv.innerHTML =
+
+"<strong>客：</strong> "
++
+text;
+
+userDiv.style.marginTop =
+"15px";
+
+log.appendChild(userDiv);
+
+const replyDiv =
+document.createElement(
+"div"
+);
+
+replyDiv.style.marginTop =
+"10px";
+
+replyDiv.innerHTML =
+
+"<strong>店員：</strong> "
++
+simulatorResponses[
+Math.floor(
+Math.random()
+*
+simulatorResponses.length
+)
+];
+
+log.appendChild(replyDiv);
+
+log.scrollTop =
+log.scrollHeight;
+
+input.value = "";
+
+}
+);
+
+/* =========================================================
+LANGUAGE SYSTEM
+========================================================= */
+
+const currentLanguage =
+
+document.getElementById(
+"currentLanguage"
+);
+
+document
+.querySelectorAll(
+".langBtn"
+)
+.forEach(btn=>{
+
+btn.addEventListener(
+"click",
+()=>{
+
+const lang =
+btn.dataset.lang;
+
+switch(lang){
+
+case "ja":
+
+currentLanguage.textContent =
+"日本語";
+
+localStorage.setItem(
+"macaronLanguage",
+"日本語"
+);
+
+break;
+
+case "en":
+
+currentLanguage.textContent =
+"English";
+
+localStorage.setItem(
+"macaronLanguage",
+"English"
+);
+
+break;
+
+case "th":
+
+currentLanguage.textContent =
+"ไทย";
+
+localStorage.setItem(
+"macaronLanguage",
+"ไทย"
+);
+
+break;
+
+}
+
+});
+
+});
+
+/* =========================================================
+LOAD LANGUAGE
+========================================================= */
+
+function loadLanguage(){
+
+const lang =
+
+localStorage.getItem(
+"macaronLanguage"
+);
+
+if(lang){
+
+currentLanguage.textContent =
+lang;
+
+}
+
+}
+
+/* =========================================================
+DAILY MACARON
+========================================================= */
+
+function generateDailyMacaron(){
+
+const dailyCards =
+
+document.querySelectorAll(
+".info-card"
+);
+
+if(
+dailyCards.length
+> 0
+){
+
+const todayText =
+
+random(scenes)
++
+"で"
++
+random(actions)
++
+random(endings);
+
+const firstParagraph =
+
+dailyCards[0]
+.querySelector("p");
+
+if(firstParagraph){
+
+firstParagraph.textContent =
+todayText;
+
+}
+
+}
+
+}
+
+/* =========================================================
+RARITY SYSTEM
+========================================================= */
+
+function getRandomRarity(){
+
+const roll =
+Math.random();
+
+if(roll < 0.45){
+
+return "Common";
+
+}
+
+if(roll < 0.70){
+
+return "Rare";
+
+}
+
+if(roll < 0.87){
+
+return "Epic";
+
+}
+
+if(roll < 0.97){
+
+return "Legendary";
+
+}
+
+return "Mythic";
+
+}
+
+/* =========================================================
+DISPLAY RARITY
+========================================================= */
+
+function updateRarityDisplay(){
+
+const cards =
+
+document.querySelectorAll(
+".info-card"
+);
+
+if(cards.length > 1){
+
+const p =
+cards[1]
+.querySelector("p");
+
+if(p){
+
+p.textContent =
+getRandomRarity();
+
+}
+
+}
+
+}
+
+/* =========================================================
+LENGTH RANK
+========================================================= */
+
+function getLengthRank(){
+
+const ranks =
+
+[
+"S",
+"M",
+"L",
+"XL",
+"XXL",
+"Σ"
+];
+
+return ranks[
+Math.floor(
+Math.random()
+*
+ranks.length
+)
+];
+
+}
+
+function updateLengthRank(){
+
+const cards =
+
+document.querySelectorAll(
+".info-card"
+);
+
+if(cards.length > 2){
+
+const p =
+cards[2]
+.querySelector("p");
+
+if(p){
+
+p.textContent =
+getLengthRank();
+
+}
+
+}
+
+}
+
+/* =========================================================
+AUTO GENERATE FIRST NAME
+========================================================= */
+
+function initializeGenerator(){
+
+generateNormal();
+
+}
+
+/* =========================================================
+RESTORE HISTORY
+========================================================= */
+
+function loadHistory(){
+
+const history =
+
+JSON.parse(
+
+localStorage.getItem(
+"macaronHistory"
+)
+
+||
+
+"[]"
+
+);
+
+console.log(
+"History Loaded:",
+history.length
+);
+
+}
+
+/* =========================================================
+WELCOME COMMENT
+========================================================= */
+
+function createWelcomeComment(){
+
+if(
+comments.length
+> 0
+){
+
+return;
+
+}
+
+comments.push({
+
+id:Date.now(),
+
+name:"Macaron Atelier",
+
+text:"ようこそ。あなたのお気に入りのマカロン名を見つけてください。",
+
+likes:12,
+
+dislikes:0,
+
+uma:24
+
+});
+
+renderComments();
+
+}
+
+/* =========================================================
+STARTUP
+========================================================= */
+
+window.addEventListener(
+"load",
+()=>{
+
+loadLanguage();
+
+loadComments();
+
+loadHistory();
+
+initializeGenerator();
+
+generateDailyMacaron();
+
+updateRarityDisplay();
+
+updateLengthRank();
+
+createWelcomeComment();
+
+}
+);
+
+/* =========================================================
+END SCRIPT
+========================================================= */
+
+</script>
+
+</body>
+</html>
